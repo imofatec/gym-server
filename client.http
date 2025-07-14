@@ -1,0 +1,40 @@
+# variables
+@baseUrl = http://localhost:3000/api
+
+###
+# health check
+# @name heathCheck
+GET {{baseUrl}}
+
+###
+# create user
+# @name createUser
+POST {{baseUrl}}/user
+Content-Type: application/json
+
+{
+    "username": "usuario",
+    "password": "senha123",
+    "email": "email@email.com",
+    "role": "user"
+}
+
+###
+@token = {{authUser.response.body.token}}
+
+###
+# get many users
+# @name getUsers
+GET {{baseUrl}}/user?page=0&pageSize=1
+Authorization: Bearer {{token}}
+
+###
+# auth user
+# @name authUser
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "email@email.com",
+    "password": "senha123"
+}
