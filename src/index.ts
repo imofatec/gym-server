@@ -1,4 +1,4 @@
-import { buildServer } from './infra/server.ts'
+import { buildServer } from './main/server.ts'
 
 ;(() => {
   try {
