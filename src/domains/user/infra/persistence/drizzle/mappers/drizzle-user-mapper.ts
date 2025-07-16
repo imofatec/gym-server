@@ -1,9 +1,6 @@
 import { UniqueEntityId } from '../../../../../shared/entities/unique-entity-id.ts'
 import { User } from '../../../../domain/user.ts'
-import { Email } from '../../../../domain/value-objects/email.ts'
-import { Password } from '../../../../domain/value-objects/password.ts'
 import type { UserRole } from '../../../../domain/value-objects/user-role.ts'
-import { Username } from '../../../../domain/value-objects/username.ts'
 import type { users } from '../schema/user.ts'
 
 export const DrizzleUserMapper = {
@@ -12,9 +9,9 @@ export const DrizzleUserMapper = {
 
     return new User(
       {
-        username: Username.create(username),
-        email: Email.create(email),
-        password: Password.create(password),
+        username,
+        email,
+        password,
         role: role as UserRole,
         createdAt: new Date(createdAt),
       },

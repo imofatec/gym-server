@@ -1,8 +1,5 @@
 import { User } from '../../../domain/user.ts'
 import type { UserRepository } from '../../../domain/user-repository.ts'
-import { Email } from '../../../domain/value-objects/email.ts'
-import { Password } from '../../../domain/value-objects/password.ts'
-import { Username } from '../../../domain/value-objects/username.ts'
 import type { NoPasswordUser } from '../../dtos/no-password-user.ts'
 import { UserMapper } from '../../dtos/user-mapper.ts'
 import type { PasswordEncoder } from '../../security/password-encoder.ts'
@@ -29,9 +26,9 @@ export class CreateUserUseCaseImpl implements CreateUserUseCase {
     const hashedPassword = await this._passwordEncoder.hash(password)
 
     const user = User.create({
-      username: Username.create(username),
-      email: Email.create(email),
-      password: Password.create(hashedPassword),
+      username,
+      email,
+      password: hashedPassword,
       role,
     })
 
