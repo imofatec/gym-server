@@ -1,11 +1,16 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-  "extends": [
-    "ultracite"
-  ],
-  "javascript": {
-    "formatter": {
-      "semicolons": "asNeeded"
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+	"extends": ["ultracite"],
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded"
+		}
+	},
+	"linter": {
+		"rules": {
+			"suspicious": {
+				"useAwait": "off"
+			}
+		}
+	}
 }
