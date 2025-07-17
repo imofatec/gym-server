@@ -1,40 +1,82 @@
-# variables
+# VARIABLES
 @baseUrl = http://localhost:3000/api
-
-###
-# health check
-# @name heathCheck
-GET {{baseUrl}}
-
-###
-# create user
-# @name createUser
-POST {{baseUrl}}/user
-Content-Type: application/json
-
-{
-    "username": "usuario",
-    "password": "senha123",
-    "email": "email@email.com",
-    "role": "user"
-}
-
-###
 @token = {{authUser.response.body.token}}
 
 ###
-# get many users
-# @name getUsers
-GET {{baseUrl}}/user?page=0&pageSize=1
-Authorization: Bearer {{token}}
+# @name heathCheck
+GET {{baseUrl}}
 
+### USERS
+# @name createUser
+POST {{baseUrl}}/user
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "senha123",
+    "email": "admin@admin.com",
+    "role": "admin"
+}
 ###
-# auth user
+# @name registerUser
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "senha123",
+    "email": "admin@admin.com",
+    "role": "admin"
+}
+###
 # @name authUser
 POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-    "email": "email@email.com",
+    "email": "admin@admin.com",
     "password": "senha123"
 }
+### 
+# @name getUsers
+GET {{baseUrl}}/user?page=0&pageSize=10
+Authorization: Bearer {{token}}
+
+
+
+
+### EXERCISES
+# @name createExercise
+POST {{baseUrl}}/exercise
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "exercicio legal 2",
+    "equipment": "n sei"
+}
+### 
+# @name getExercises
+GET {{baseUrl}}/exercise
+Authorization: Bearer {{token}}
+
+
+
+
+### TRAININGS
+# @name createTraining
+POST {{baseUrl}}/training
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "treino legal",
+    "dayOfWeek": "monday",
+    "exercisesIds": []
+}
+### 
+# @name getTrainings
+GET {{baseUrl}}/training?page=0&pageSize=10
+Authorization: Bearer {{token}}
+
