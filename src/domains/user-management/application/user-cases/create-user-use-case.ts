@@ -1,7 +1,7 @@
 import type { UserRole } from '../../domain/value-objects/user-role.ts'
 import type { UserDTO } from '../dtos/user.ts'
 
-export type CreateUserUseCaseRequest = {
+export type CreateUserUseCaseDTO = {
   username: string
   password: string
   email: string
@@ -9,5 +9,5 @@ export type CreateUserUseCaseRequest = {
 }
 
 export interface CreateUserUseCase {
-  execute(userRequest: CreateUserUseCaseRequest): Promise<UserDTO>
+  execute(userRequest: CreateUserUseCaseDTO): Promise<UserDTO>
 }

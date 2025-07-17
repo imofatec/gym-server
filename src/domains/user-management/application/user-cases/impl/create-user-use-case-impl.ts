@@ -6,7 +6,7 @@ import { type UserDTO, UserMapper } from '../../dtos/user.ts'
 import type { PasswordEncoder } from '../../security/password-encoder.ts'
 import type {
   CreateUserUseCase,
-  CreateUserUseCaseRequest,
+  CreateUserUseCaseDTO,
 } from '../create-user-use-case.ts'
 
 export class CreateUserUseCaseImpl implements CreateUserUseCase {
@@ -19,7 +19,7 @@ export class CreateUserUseCaseImpl implements CreateUserUseCase {
     this._passwordEncoder = passwordEncoder
   }
 
-  async execute(userRequest: CreateUserUseCaseRequest): Promise<UserDTO> {
+  async execute(userRequest: CreateUserUseCaseDTO): Promise<UserDTO> {
     const { username, email, password, role } = userRequest
 
     await this._verifyUserEmail(email)
@@ -43,10 +43,16 @@ export class CreateUserUseCaseImpl implements CreateUserUseCase {
   }
 
   private async _verifyUserEmail(email: string): Promise<void> {
-    const { error } = await tryCatch(this._repository.findByEmail(email))
+    const { result, error } = await tryCatch(
+      this._repository.findByEmail(email)
+    )
+
+    if (result) {
+      throw new ConflictError('Email ja existe')
+    }
 
     if (error) {
-      throw new ConflictError('Email ja existe')
+      throw new Error('Não foi possivel criar o usuário')
     }
   }
 }

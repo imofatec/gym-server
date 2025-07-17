@@ -29,9 +29,9 @@ export class DrizzleUserRepository implements UserRepository {
     return rows.map((r) => DrizzleUserMapper.toDomain(r))
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | null> {
     const [row] = await db.select().from(users).where(eq(users.email, email))
 
-    return DrizzleUserMapper.toDomain(row)
+    return row ? DrizzleUserMapper.toDomain(row) : null
   }
 }

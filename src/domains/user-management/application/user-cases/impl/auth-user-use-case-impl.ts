@@ -6,7 +6,7 @@ import { type UserDTO, UserMapper } from '../../dtos/user.ts'
 import type { PasswordEncoder } from '../../security/password-encoder.ts'
 import type {
   AuthUserUseCase,
-  AuthUserUseCaseRequest,
+  AuthUserUseCaseDTO,
 } from '../auth-user-use-case.ts'
 
 export class AuthUserUseCaseImpl implements AuthUserUseCase {
@@ -19,7 +19,7 @@ export class AuthUserUseCaseImpl implements AuthUserUseCase {
     this._passwordEncoder = passwordEncoder
   }
 
-  async execute(params: AuthUserUseCaseRequest): Promise<UserDTO> {
+  async execute(params: AuthUserUseCaseDTO): Promise<UserDTO> {
     const { email, password } = params
 
     const { result, error } = await tryCatch(
