@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "node --env-file .env --experimental-strip-types --no-warnings --watch ./src/index.ts",
     "build": "npx tsc --noEmit",
-    "db:push": "npx drizzle-kit push --config ./src/main/config/db/drizzle/drizzle.config.ts",
-    "db:generate": "npx drizzle-kit generate --config ./src/main/config/db/drizzle/drizzle.config.ts",
-    "db:migrate": "npx drizzle-kit migrate --config ./src/main/config/db/drizzle/drizzle.config.ts",
-    "db:ui": "npx drizzle-kit studio --config ./src/main/config/db/drizzle/drizzle.config.ts",
-    "db:seed": "node --env-file .env --experimental-strip-types --no-warnings --watch ./src/main/config/db/drizzle/seed.ts"
+    "db:push": "npx drizzle-kit push --config ./src/infra/persistence/drizzle/drizzle.config.ts",
+    "db:generate": "npx drizzle-kit generate --config ./src/infra/persistence/drizzle/drizzle.config.ts",
+    "db:migrate": "npx drizzle-kit migrate --config ./src/infra/persistence/drizzle/drizzle.config.ts",
+    "db:ui": "npx drizzle-kit studio --config ./src/infra/persistence/drizzle/drizzle.config.ts",
+    "db:seed": "node --env-file .env --experimental-strip-types --no-warnings --watch ./src/infra/persistence/drizzle/seed.ts"
   },
   "keywords": [],
   "author": "",
