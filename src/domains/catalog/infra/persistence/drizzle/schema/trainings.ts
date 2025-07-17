@@ -1,6 +1,6 @@
 import { relations } from 'drizzle-orm'
 import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
-import { users } from '../../../../../user/infra/persistence/drizzle/schema/user.ts'
+import { users } from '../../../../../user-management/infra/persistence/drizzle/schema/user.ts'
 import { exercises } from './exercises.ts'
 
 export const trainings = pgTable('trainings', {

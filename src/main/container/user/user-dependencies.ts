@@ -1,4 +1,4 @@
-import { DrizzleUserRepository } from '../../../domains/user/infra/persistence/drizzle/drizzle-user-repository.ts'
+import { DrizzleUserRepository } from '../../../domains/user-management/infra/persistence/drizzle/drizzle-user-repository.ts'
 import { BcryptPasswordEncoder } from '../../lib/bcrypt.ts'
 
 const security = {

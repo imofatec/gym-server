@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import type { PasswordEncoder } from '../../domains/user/application/security/password-encoder.ts'
+import type { PasswordEncoder } from '../../domains/user-management/application/security/password-encoder.ts'
 
 export class BcryptPasswordEncoder implements PasswordEncoder {
   private _salt: number

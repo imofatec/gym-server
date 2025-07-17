@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { makeCreateUserUseCase } from '../../../container/user/factory/index.ts'
-import type { CreateUserDTO } from '../../schema/user/create-user-schema.ts'
+import type { CreateUserDTO } from '../../schema/user-management/create-user-management-schemas.ts'
 
 export const createUserController = async (
   request: FastifyRequest,

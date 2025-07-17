@@ -13,7 +13,7 @@ import {
   loginUserRoutes,
   userAdminRoutes,
   userRoutes,
-} from './user/user-routes.ts'
+} from './user-management/user-routes.ts'
 
 export function adminRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyUserRole)

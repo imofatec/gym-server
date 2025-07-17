@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { makeAuthUserUseCase } from '../../../container/user/factory/index.ts'
-import type { AuthUserDTO } from '../../schema/user/auth-user-schema.ts'
+import type { AuthUserDTO } from '../../schema/user-management/auth-user-schema.ts'
 
 export async function authUserController(
   request: FastifyRequest,

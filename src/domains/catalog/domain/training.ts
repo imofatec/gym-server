@@ -1,7 +1,7 @@
 import { BaseEntity } from '../../shared/entities/base-entity.ts'
 import type { UniqueEntityId } from '../../shared/entities/unique-entity-id.ts'
 import type { Optional } from '../../shared/utils/optional.js'
-import type { User } from '../../user/domain/user.ts'
+import type { User } from '../../user-management/domain/user.ts'
 import type { Exercise } from './exercise.ts'
 import type { DaysOfWeek } from './value-objects/days-of-week.ts'
 
