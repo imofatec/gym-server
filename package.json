@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --env-file .env --experimental-strip-types --no-warnings --watch ./src/index.ts",
+    "build": "npx tsc --noEmit",
     "db:push": "npx drizzle-kit push --config ./src/main/config/db/drizzle/drizzle.config.ts",
     "db:generate": "npx drizzle-kit generate --config ./src/main/config/db/drizzle/drizzle.config.ts",
     "db:migrate": "npx drizzle-kit migrate --config ./src/main/config/db/drizzle/drizzle.config.ts",
