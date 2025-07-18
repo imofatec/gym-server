@@ -1,7 +1,8 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
-import { createUserController } from '../../controllers/user-management/create-user-controller.ts'
-import { createUserSchema } from '../../schemas/user-management/create-user-management-schemas.ts'
+import { getUsersController } from '../../controllers/user-management/get-users-controller.ts'
+import { getUsersSchema } from '../../schemas/user-management/get-user-management-schemas.ts'
 
-export const userAdminRoutes: FastifyPluginAsyncZod = async (app) => {
-  app.post('/', createUserSchema, createUserController)
+
+export const userRoutes: FastifyPluginAsyncZod = async (app) => {
+  app.get('/', getUsersSchema, getUsersController)
 }

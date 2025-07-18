@@ -1,5 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
-import { makeCreateUserUseCase } from '../../../infra/container/user-management/factory/index.ts'
+import { makeCreateUserUseCase } from '../../../infra/container/user-management/factory/user.ts'
 import type { RegisterUserRequestBody } from '../../schemas/user-management/create-user-management-schemas.ts'
 
 export const registerUserController = async (

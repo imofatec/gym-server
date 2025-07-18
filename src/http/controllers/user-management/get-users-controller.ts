@@ -1,5 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
-import { makeGetUsersUseCase } from '../../../infra/container/user-management/factory/index.ts'
+import { makeGetUsersUseCase } from '../../../infra/container/user-management/factory/user.ts'
 import type { PaginationQuerystring } from '../../schemas/pagination-schema.ts'
 
 export const getUsersController = async (

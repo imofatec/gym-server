@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import type { CreateUserUseCaseDTO } from '../../../domains/user-management/application/user-cases/create-user-use-case.ts'
-import { userResponse } from './user-management-responses.ts'
+import { scheduleResponse, userResponse } from './user-management-responses.ts'
 
 export const createUserRequest = z.object({
   username: z.string(),
@@ -34,5 +34,24 @@ export const registerUserSchema = {
   },
 }
 
+export const createScheduleRequestBody = z.object({
+  studentId: z.string().nonempty(),
+  trainingsIds: z.string().array(),
+  startDate: z.coerce.date(),
+  finishDate: z.coerce.date(),
+})
+
+export const createScheduleSchema = {
+  schema: {
+    body: createScheduleRequestBody,
+    response: {
+      201: scheduleResponse,
+    },
+  },
+}
+
 export type CreateUserRequestBody = z.infer<typeof createUserRequest>
 export type RegisterUserRequestBody = z.infer<typeof registerUserRequestBody>
+export type CreateScheduleRequestBody = z.infer<
+  typeof createScheduleRequestBody
+>

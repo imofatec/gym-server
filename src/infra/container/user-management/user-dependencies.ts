@@ -9,7 +9,7 @@ const repository = {
   drizzleRepository: new DrizzleUserRepository(),
 }
 
-export const dependencies = {
+export const userDependencies = {
   security,
   repository,
 }

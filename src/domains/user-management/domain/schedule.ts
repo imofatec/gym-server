@@ -1,6 +1,7 @@
 import type { Training } from '../../catalog/domain/training.ts'
 import { BaseEntity } from '../../shared/entities/base-entity.ts'
 import type { UniqueEntityId } from '../../shared/entities/unique-entity-id.ts'
+import type { Optional } from '../../shared/utils/optional.js'
 import type { User } from './user.ts'
 
 export type ScheduleProps = {
@@ -12,7 +13,10 @@ export type ScheduleProps = {
 }
 
 export class Schedule extends BaseEntity<ScheduleProps> {
-  static create(props: ScheduleProps, id?: UniqueEntityId) {
+  static create(
+    props: Optional<ScheduleProps, 'createdAt'>,
+    id?: UniqueEntityId
+  ) {
     return new Schedule(
       {
         ...props,
@@ -26,7 +30,7 @@ export class Schedule extends BaseEntity<ScheduleProps> {
     return this.props.studentId.toString()
   }
 
-  get trainingIds() {
+  get trainingsIds() {
     return this.props.trainingIds.map((id) => id.toString())
   }
 
@@ -34,7 +38,7 @@ export class Schedule extends BaseEntity<ScheduleProps> {
     return this.props.startDate
   }
 
-  get finalDate() {
+  get finishDate() {
     return this.props.finishDate
   }
 

@@ -41,8 +41,22 @@ Content-Type: application/json
 ### 
 # @name getUsers
 GET {{baseUrl}}/user?page=0&page_size=10
-Authorization: Bearer {{token}}
 
+
+
+
+### SCHEDULES
+# @name createSchedule
+POST {{baseUrl}}/schedule
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "studentId": "21aa9b7e-0424-4622-8f3f-51ce677128e1",
+    "trainingsIds": ["ae3957cf-4c03-408b-9fea-7014b5ad3d7c"],
+    "startDate": "2025-07-18",
+    "finishDate": "2025-07-19"
+}
 
 
 
