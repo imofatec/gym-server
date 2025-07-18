@@ -6,11 +6,11 @@ export const getExercisesController = async (
   request: FastifyRequest<{ Querystring: PaginationQuerystring }>,
   reply: FastifyReply
 ) => {
-  const pagination = request.query
+  const { page, page_size: pageSize } = request.query
 
   const useCase = makeGetExercisesUseCase()
 
-  const exercises = await useCase.execute(pagination)
+  const exercises = await useCase.execute({ page, pageSize })
 
   return reply.send(exercises)
 }

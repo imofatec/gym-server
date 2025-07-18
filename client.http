@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 ### 
 # @name getUsers
-GET {{baseUrl}}/user?page=0&pageSize=10
+GET {{baseUrl}}/user?page=0&page_size=10
 Authorization: Bearer {{token}}
 
 
@@ -58,7 +58,7 @@ Content-Type: application/json
 }
 ### 
 # @name getExercises
-GET {{baseUrl}}/exercise
+GET {{baseUrl}}/exercise?page=0&page_size=10
 Authorization: Bearer {{token}}
 
 
@@ -77,6 +77,6 @@ Content-Type: application/json
 }
 ### 
 # @name getTrainings
-GET {{baseUrl}}/training?page=0&pageSize=10
+GET {{baseUrl}}/training?page=0&page_size=10&include_exercises=1
 Authorization: Bearer {{token}}
 

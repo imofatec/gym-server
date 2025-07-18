@@ -3,7 +3,7 @@ import type { PaginationParams } from '../../domains/shared/repository/paginatio
 
 export const paginationQuerystring = z.object({
   page: z.coerce.number().min(0).optional(),
-  pageSize: z.coerce.number().min(0).optional(),
+  page_size: z.coerce.number().min(0).optional(),
 }) satisfies z.ZodType<Partial<PaginationParams>>
 
 export type PaginationQuerystring =

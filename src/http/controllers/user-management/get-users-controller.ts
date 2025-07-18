@@ -6,9 +6,10 @@ export const getUsersController = async (
   request: FastifyRequest<{ Querystring: PaginationQuerystring }>,
   reply: FastifyReply
 ) => {
-  const pagination = request.query
+  const { page, page_size: pageSize } = request.query
+
   const useCase = makeGetUsersUseCase()
-  const users = await useCase.execute(pagination)
+  const users = await useCase.execute({ page, pageSize })
 
   return reply.send(users)
 }

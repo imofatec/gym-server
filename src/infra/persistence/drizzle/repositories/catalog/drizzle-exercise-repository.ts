@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import type { Exercise } from '../../../../../domains/catalog/domain/exercise.ts'
 import type { ExerciseRepository } from '../../../../../domains/catalog/domain/exercise-repository.ts'
 import type { PaginationParams } from '../../../../../domains/shared/repository/pagination-params.js'
@@ -8,6 +8,17 @@ import { withPagination } from '../utils/with-pagination.ts'
 import { DrizzleExerciseMapper } from './mappers/drizzle-exercise-mapper.ts'
 
 export class DrizzleExerciseRepository implements ExerciseRepository {
+  async findByIds(ids: Exercise['id'][]): Promise<Exercise[]> {
+    const stringIds = ids.map((id) => id.toString())
+
+    const rows = await db
+      .select()
+      .from(exercises)
+      .where(inArray(exercises.id, stringIds))
+
+    return rows.map((r) => DrizzleExerciseMapper.toDomain(r))
+  }
+
   async findAll(pagination?: PaginationParams): Promise<Exercise[]> {
     let query = db
       .select()
@@ -26,13 +37,13 @@ export class DrizzleExerciseRepository implements ExerciseRepository {
     return foundExercises.map((e) => DrizzleExerciseMapper.toDomain(e))
   }
 
-  async findById(id: Exercise['id']): Promise<Exercise> {
+  async findById(id: Exercise['id']): Promise<Exercise | null> {
     const [row] = await db
       .select()
       .from(exercises)
       .where(eq(exercises.id, id.toString()))
 
-    return DrizzleExerciseMapper.toDomain(row)
+    return row ? DrizzleExerciseMapper.toDomain(row) : null
   }
 
   async save(exercise: Exercise): Promise<Exercise> {
