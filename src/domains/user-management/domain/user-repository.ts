@@ -5,4 +5,5 @@ export interface UserRepository {
   save(user: User): Promise<User>
   findAll(pagination?: PaginationParams): Promise<User[]>
   findByEmail(email: string): Promise<User | null>
+  findById(id: User['id']): Promise<User | null>
 }

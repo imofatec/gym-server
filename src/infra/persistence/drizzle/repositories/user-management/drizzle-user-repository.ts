@@ -8,6 +8,15 @@ import { withPagination } from '../utils/with-pagination.ts'
 import { DrizzleUserMapper } from './mappers/drizzle-user-mapper.ts'
 
 export class DrizzleUserRepository implements UserRepository {
+  async findById(id: User['id']): Promise<User | null> {
+    const [row] = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, id.toString()))
+
+    return DrizzleUserMapper.toDomain(row)
+  }
+
   async save(user: User): Promise<User> {
     const raw = DrizzleUserMapper.toPersistence(user)
 
