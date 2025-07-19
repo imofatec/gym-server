@@ -1,4 +1,4 @@
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 import type { Training } from '../../../../../domains/catalog/domain/training.ts'
 import type { TrainingRepository } from '../../../../../domains/catalog/domain/training-repository.ts'
 import type { PaginationParams } from '../../../../../domains/shared/repository/pagination-params.js'
@@ -10,6 +10,24 @@ import { DrizzleTrainingMapper } from './mappers/drizzle-training-mapper.ts'
 import { DrizzleTrainingExercisesMapper } from './mappers/drizzle-trainings-exercises-mapper.ts'
 
 export class DrizzleTrainingRepository implements TrainingRepository {
+  async findByIds(ids: Training['id'][]): Promise<Training[]> {
+    const rows = await db
+      .select()
+      .from(trainings)
+      .where(
+        inArray(
+          trainings.id,
+          ids.map((id) => id.toString())
+        )
+      )
+      .leftJoin(
+        trainingsExercises,
+        eq(trainings.id, trainingsExercises.trainingId)
+      )
+
+    return DrizzleTrainingExercisesMapper.toTraining(rows)
+  }
+
   async findAll(pagination?: PaginationParams): Promise<Training[]> {
     let query = db
       .select()
