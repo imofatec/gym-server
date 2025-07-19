@@ -7,6 +7,7 @@ import { trainings } from '../../schemas/catalog/trainings.ts'
 import { trainingsExercises } from '../../schemas/catalog/trainings-exercises.ts'
 import { withPagination } from '../utils/with-pagination.ts'
 import { DrizzleTrainingMapper } from './mappers/drizzle-training-mapper.ts'
+import { DrizzleTrainingExercisesMapper } from './mappers/drizzle-trainings-exercises-mapper.ts'
 
 export class DrizzleTrainingRepository implements TrainingRepository {
   async findAll(pagination?: PaginationParams): Promise<Training[]> {
@@ -27,29 +28,7 @@ export class DrizzleTrainingRepository implements TrainingRepository {
 
     const rows = await query
 
-    const exercisesByTraining: Record<string, string[]> = {}
-
-    for (const row of rows) {
-      const trainingId = row.trainings.id
-      const exerciseId = row.trainings_exercises?.exerciseId
-
-      if (!exerciseId) {
-        continue
-      }
-
-      if (!exercisesByTraining[trainingId]) {
-        exercisesByTraining[trainingId] = []
-      }
-
-      exercisesByTraining[trainingId].push(exerciseId)
-    }
-
-    return rows.map((r) => {
-      const training = r.trainings
-      const exerciseIds = exercisesByTraining[training.id] ?? []
-
-      return DrizzleTrainingMapper.toDomain(training, exerciseIds)
-    })
+    return DrizzleTrainingExercisesMapper.toTraining(rows)
   }
 
   async save(training: Training): Promise<Training> {
