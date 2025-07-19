@@ -1,4 +1,4 @@
-import type { ScheduleDTO } from '../dtos/schdeule.ts'
+import type { ScheduleDTO } from '../dtos/schedule.ts'
 
 export type CreateScheduleDTO = {
   studentId: string

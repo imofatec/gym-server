@@ -2,7 +2,7 @@ import { UniqueEntityId } from '../../../../shared/entities/unique-entity-id.ts'
 import { tryCatch } from '../../../../shared/utils/try-catch.ts'
 import { Schedule } from '../../../domain/schedule.ts'
 import type { ScheduleRepository } from '../../../domain/schedule-repository.ts'
-import { type ScheduleDTO, ScheduleMapper } from '../../dtos/schdeule.ts'
+import { type ScheduleDTO, ScheduleMapper } from '../../dtos/schedule.ts'
 import type {
   CreateSCheduleUseCase,
   CreateScheduleDTO,
